@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Xunit;
+using Xunit.Abstractions;
+using Xunit.Extensions;
 
 namespace Tennis
 {
-    public class TestDataGenerator : IEnumerable<object[]>
+    
+        public class TestDataGenerator : IEnumerable<object[]>
     {
-        private readonly List<object[]> _data = new List<object[]>
+        private   readonly List<object[]> _data = new List<object[]>
         {
             new object[] {0, 0, "Love-All"},
             new object[] {1, 1, "Fifteen-All"},
@@ -44,15 +47,21 @@ namespace Tennis
             new object[] {14, 16, "Win for player2"},
         };
 
-        public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
+        public  IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
     public class TennisTests
     {
+
+        
+
         [Theory]
         [ClassData(typeof(TestDataGenerator))]
+       
+      
+
         public void Tennis1Test(int p1, int p2, string expected)
         {
             var game = new TennisGame1("player1", "player2");
@@ -61,6 +70,7 @@ namespace Tennis
 
         [Theory]
         [ClassData(typeof(TestDataGenerator))]
+      
         public void Tennis2Test(int p1, int p2, string expected)
         {
             var game = new TennisGame2("player1", "player2");
@@ -69,6 +79,7 @@ namespace Tennis
 
         [Theory]
         [ClassData(typeof(TestDataGenerator))]
+     
         public void Tennis3Test(int p1, int p2, string expected)
         {
             var game = new TennisGame3("player1", "player2");
